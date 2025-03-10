@@ -20,10 +20,10 @@ LDD_MODULE_MAKE_OPTS = \
     KVERSION=$(LINUX_VERSION_PROBED) \
     EXTRA_CFLAGS="-I$(@D)/include"
 
-define LDD_BUILD_CMDS
-    $(MAKE) $(TARGET_CONFIGURE_OPTS) -C $(@D)/misc-modules
-    $(MAKE) $(TARGET_CONFIGURE_OPTS) -C $(@D)/scull
-endef
+#define LDD_BUILD_CMDS
+#	$(MAKE) $(TARGET_CONFIGURE_OPTS) -C $(@D)/misc-modules
+#        $(MAKE) $(TARGET_CONFIGURE_OPTS) -C $(@D)/scull
+#endef
 
 define LDD_INSTALL_TARGET_CMDS
     # Install kernel modules in the correct location
