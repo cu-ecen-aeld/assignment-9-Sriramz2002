@@ -6,7 +6,7 @@
 ##############################################################
 
 
-LDD_VERSION = d516c63744d5b7e8cb3498068c81c4798991297b
+LDD_VERSION = cc29c9ac15893e95c2c3ca7fb01607a5170b5276
 LDD_SITE = git@github.com:cu-ecen-aeld/assignment-7-Sriramz2002.git
 LDD_SITE_METHOD = git
 LDD_GIT_SUBMODULES = YES
@@ -20,10 +20,10 @@ LDD_MODULE_MAKE_OPTS = \
     KVERSION=$(LINUX_VERSION_PROBED) \
     EXTRA_CFLAGS="-I$(@D)/include"
 
-define LDD_BUILD_CMDS
-	$(MAKE) $(TARGET_CONFIGURE_OPTS) -C $(@D)/misc-modules
-        $(MAKE) $(TARGET_CONFIGURE_OPTS) -C $(@D)/scull
-endef
+#define LDD_BUILD_CMDS
+#	$(MAKE) $(TARGET_CONFIGURE_OPTS) -C $(@D)/misc-modules
+#        $(MAKE) $(TARGET_CONFIGURE_OPTS) -C $(@D)/scull
+#endef
 
 define LDD_INSTALL_TARGET_CMDS
     # Install kernel modules in the correct location
