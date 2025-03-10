@@ -7,7 +7,7 @@ MODULE_UNLOAD=/usr/bin/module_unload
 
 case "$1" in
   start)
-
+    cd /etc/init.d || exit 1
     [ -x "$SCULL_LOAD" ] && "$SCULL_LOAD"
     [ -x "$MODULE_LOAD" ] && "$MODULE_LOAD" faulty
     lsmod | grep -q "hello" || modprobe hello
