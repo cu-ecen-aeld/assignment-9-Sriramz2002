@@ -1,0 +1,6 @@
+
+config BR2_PACKAGE_AESDCHAR
+	bool "aesdchar"
+	help
+	   This package builds aesd_char sub directories.
+	   This package installs the aesdchar kernel module from aesd_char directory.

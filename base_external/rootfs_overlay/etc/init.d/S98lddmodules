@@ -1,5 +1,52 @@
 #!/bin/sh
 
+# Paths to load/unload scripts
+SCULL_LOAD=/usr/bin/scull_load
+MODULE_LOAD=/usr/bin/module_load
+SCULL_UNLOAD=/usr/bin/scull_unload
+MODULE_UNLOAD=/usr/bin/module_unload
+AESDCHAR_LOAD=/usr/bin/aesdchar_load
+AESDCHAR_UNLOAD=/usr/bin/aesdchar_unload
+
+case "$1" in
+  start)
+      cd /etc/init.d || exit 1
+    # Load scull driver
+    [ -x "$SCULL_LOAD" ] && "$SCULL_LOAD"
+
+    # Load faulty driver
+    [ -x "$MODULE_LOAD" ] && "$MODULE_LOAD" "faulty"
+
+    # Load aesdchar driver
+    [ -x "$AESDCHAR_LOAD" ] && "$AESDCHAR_LOAD"
+
+    # Load hello module if not loaded
+    lsmod | grep -q "hello" || modprobe hello
+    ;;
+    
+  stop)
+    # Unload hello module if loaded
+    lsmod | grep -q "hello" && rmmod hello
+
+    # Unload faulty driver
+    [ -x "$MODULE_UNLOAD" ] && "$MODULE_UNLOAD" "faulty"
+
+    # Unload aesdchar driver
+    [ -x "$AESDCHAR_UNLOAD" ] && "$AESDCHAR_UNLOAD"
+
+    # Unload scull driver
+    [ -x "$SCULL_UNLOAD" ] && "$SCULL_UNLOAD"
+    ;;
+    
+  *)
+    echo "Usage: $0 {start|stop}"
+    exit 1
+    ;;
+esac
+
+exit 0
+#!/bin/sh
+
 SCULL_LOAD=/usr/bin/scull_load
 MODULE_LOAD=/usr/bin/module_load
 SCULL_UNLOAD=/usr/bin/scull_unload
